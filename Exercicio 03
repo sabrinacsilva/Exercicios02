@@ -47,7 +47,10 @@ const EventHandlingExample: React.FC = () => {
       </div>
       <div>
         <button onClick={handleButtonClick}>
-          Clique aqui
+          Clique aqui para aumentar
+        </button>
+        <button onClick={handleButtonClick2}>
+          Clique aqui para diminuir
         </button>
         <p>O botão foi clicado {clickCount} vezes</p>
       </div>
