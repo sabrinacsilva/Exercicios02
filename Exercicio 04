@@ -1,1 +1,48 @@
-s
+import { useEffect, useState } from 'react';
+ function ColorBox({ color }: { color: string }) {
+ const [bgColor, setBgColor] = useState<string>('white');
+ useEffect(() => {
+ setBgColor(color);
+ }, [color]);
+ return (
+ <div style={{ backgroundColor: bgColor, width: '200px', height: '200px', border: '1px solid black' }}>
+ <p style={{ textAlign: 'center', lineHeight: '200px', color: 'black' }}>Cor Atual: {bgColor}</p>
+ </div>
+ );
+ }
+ export default ColorBox;
+
+
+ Componente ColorInput (ColorInput.tsx):
+ function ColorInput({ color, setColor }: { color: string, setColor: (value: string) => void }) {
+ return (
+ <div>
+ <label htmlFor='colorInput'>Digite uma cor ou código hexadecimal: </label>
+ <input
+ type='text'
+ id='colorInput'
+ value={color}
+ onChange={(e) => setColor(e.target.value)}
+ />
+ </div>
+ );
+ }
+ export default ColorInput;
+
+
+Componente Principal (App.tsx):
+import './App.css';
+ import { useState } from 'react';
+ import ColorBox from './components/ColorBox';
+ import ColorInput from './components/ColorInput';
+ function App() {
+ const [color, setColor] = useState<string>('white');
+ return (
+ <div className='App'>
+ <h1>Mudar Cor de Fundo com useEffect</h1>
+ <ColorInput color={color} setColor={setColor} />
+ <ColorBox color={color} />
+ </div>
+ );
+ }
+ export default App;
